@@ -1,5 +1,5 @@
-#ifndef IGUI_HPP
-#define IGUI_HPP
+#ifndef IGUI_H
+#define IGUI_H
 
 class IGUI
 {

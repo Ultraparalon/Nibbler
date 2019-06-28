@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Engine.hpp"
+#include "Engine.h"
 
 void	wizard(int y, int x)
 {
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	if (argc == 3)
 	{
 		wizard(std::stoi(argv[1]), std::stoi(argv[2]));
-		std::cout << "Hello nigga!" << std::endl;
+		std::cout << "Hello!" << std::endl;
 	}
 
 	return 0;

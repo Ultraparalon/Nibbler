@@ -1,16 +1,13 @@
-#include "Engine.hpp"
+#include "Engine.h"
 
-Engine::Engine() {}
-Engine::Engine(int const y, int const x)
+Engine::Engine()
 {
-	map = new char*[y];
-	for (int i = 0; i < y; i++)
-	{
-		map[i] = new char[x];
-	}
-	gui = nullptr;
+	m_dynamic = new DynamicSdl();
 }
-Engine::~Engine() {}
+Engine::~Engine()
+{
+	delete m_dynamic;
+}
 
 void	Engine::run()
 {
