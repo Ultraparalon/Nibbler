@@ -2,6 +2,7 @@
 #define DYNAMICSDL_H
 
 #include "IDynamic.h"
+#include "SdlGui.h"
 #include "SdlInput.h"
 
 class DynamicSdl : public IDynamic
@@ -15,6 +16,10 @@ public:
 	void render();
 	void playSounds(std::list<eSound> &);
 	void playMusic(eMusic);
+
+private:
+	SdlGui gui;
+	SdlInput input;
 	
 };
 
