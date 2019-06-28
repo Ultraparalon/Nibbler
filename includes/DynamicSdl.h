@@ -2,8 +2,9 @@
 #define DYNAMICSDL_H
 
 #include "IDynamic.h"
+#include "SdlInput.h"
 
-class DynamicSdl : public IDymanic
+class DynamicSdl : public IDynamic
 {
 public:
 	DynamicSdl();
@@ -12,8 +13,8 @@ public:
 	void eventRefresh(EventKeep &);
 	void drawObjects(std::list<Drawable const * const> &);
 	void render();
-	void playSounds(std::list<Sound> &);
-	void playMusic(Music);
+	void playSounds(std::list<eSound> &);
+	void playMusic(eMusic);
 	
 };
 

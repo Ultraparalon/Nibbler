@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "IDynamic.h"
+#include "DynamicSdl.h"
 #include "Nibbler.h"
 #include "EventKeep.h"
 
