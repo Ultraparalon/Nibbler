@@ -3,31 +3,21 @@
 
 #include <list>
 
-#include "EventKeep.h"
-#include "Drawable.h"
-
-enum eSound
-{
-	SOUND1,
-	SOUND2
-};
-
-enum eMusic
-{
-	MUSIC1,
-	MUSIC2
-};
-
 class IDynamic
 {
 public:
 	virtual ~IDynamic() {};
 
-	virtual void eventRefresh(EventKeep &) = 0;
-	virtual void drawObjects(std::list<Drawable const * const> &) = 0;
+	virtual void drawObject(const int, const int, const unsigned int) = 0;
 	virtual void render() = 0;
-	virtual void playSounds(std::list<eSound> &) = 0;
-	virtual void playMusic(eMusic) = 0;
+
+	virtual void playSound(const int) = 0;
+	virtual void playMusic(const int) = 0;
+
+	virtual void inputRefresh() = 0;
+	virtual int getMouseY() const = 0;
+	virtual int getMouseX() const = 0;
+	virtual unsigned int getKeys() const = 0;
 	
 };
 

@@ -11,11 +11,15 @@ public:
 	DynamicSdl();
 	~DynamicSdl();
 
-	void eventRefresh(EventKeep &);
-	void drawObjects(std::list<Drawable const * const> &);
+	void drawObject(const int, const int, const unsigned int);
 	void render();
-	void playSounds(std::list<eSound> &);
-	void playMusic(eMusic);
+	void playSound(const int);
+	void playMusic(const int);
+
+	void inputRefresh();
+	int getMouseY() const;
+	int getMouseX() const;
+	unsigned int getKeys() const;
 
 private:
 	SdlGui gui;

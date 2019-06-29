@@ -5,7 +5,6 @@
 #include <iostream>
 #include <list>
 
-#include "Drawable.h"
 
 class SdlGui
 {
@@ -13,7 +12,7 @@ public:
 	SdlGui();
 	~SdlGui();
 
-	void drawObjects(std::list<Drawable const * const> &);
+	void drawObject(const int, const int, const unsigned int);
 	void render();
 
 private:

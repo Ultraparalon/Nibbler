@@ -3,24 +3,24 @@
 
 #include <SDL.h>
 
-#include "EventKeep.h"
-
-enum eState
-{
-	OFF,
-	ON	
-};
-
 class SdlInput
 {
 public:
 	SdlInput();
 	~SdlInput();
 
-	void refresh(EventKeep &);
+	int getMouseY() const;
+	int getMouseX() const;
+	unsigned int getKeys() const;
+
+	void refresh();
 
 private:
 	SDL_Event event;
+
+	int mousey;
+	int mousex;
+	unsigned int keys;
 	
 };
 

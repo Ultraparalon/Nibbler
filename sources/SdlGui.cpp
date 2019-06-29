@@ -40,7 +40,7 @@ SdlGui::~SdlGui()
 	SDL_DestroyWindow(win);
 }
 
-void SdlGui::drawObjects(std::list<Drawable const * const> & objects)
+void SdlGui::drawObject(const int y, const int x, const unsigned int type)
 {
 
 }

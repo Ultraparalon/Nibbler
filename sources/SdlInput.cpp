@@ -3,26 +3,41 @@
 SdlInput::SdlInput() {}
 SdlInput::~SdlInput() {}
 
-static void keyaction(EventKeep & ek, const SDL_Keycode key,
-	const bool state)
+int SdlInput::getMouseY() const
+{
+	return mousey;
+}
+
+int SdlInput::getMouseX() const
+{
+	return mousex;
+}
+
+unsigned int SdlInput::getKeys() const
+{
+	return keys;
+}
+
+static unsigned int keyaction(const SDL_Keycode key)
 {
 	switch (key)
 	{
-		case SDLK_ESCAPE: ek.setEsc(state); break;
+		case SDLK_ESCAPE: return (1 << 5);
+		default: return 0;
 	}
 }
 
-static void mouseaction(EventKeep & ek, const unsigned int button,
-	const bool state)
+static unsigned int mouseaction(const unsigned int button)
 {
 	switch (button)
 	{
-		case SDL_BUTTON_LEFT: ek.setLmb(state); break;
-		case SDL_BUTTON_RIGHT: ek.setRmb(state); break;
+		case SDL_BUTTON_LEFT: return 1;
+		case SDL_BUTTON_RIGHT: return (1 << 1);
+		default: return 0;
 	}
 }
 
-void SdlInput::refresh(EventKeep & ek)
+void SdlInput::refresh()
 {
 	while (SDL_PollEvent(&event))
 	{
@@ -31,23 +46,23 @@ void SdlInput::refresh(EventKeep & ek)
 		switch (event.type)
 		{
 			case SDL_MOUSEMOTION:
-				ek.setMouseY(event.motion.y);
-				ek.setMouseX(event.motion.x);
+				mousey = (event.motion.y);
+				mousex = (event.motion.x);
 				break;
 			case SDL_MOUSEBUTTONDOWN:
-				mouseaction(ek, event.button.button, ON);
+				keys |= mouseaction(event.button.button);
 				break;
 			case SDL_MOUSEBUTTONUP:
-				mouseaction(ek, event.button.button, OFF);
+				keys &= ~mouseaction(event.button.button);
 				break;
 			case SDL_KEYDOWN:
-				keyaction(ek, event.key.keysym.sym, ON);
+				keys |= keyaction(event.key.keysym.sym);
 				break;
 			case SDL_KEYUP:
-				keyaction(ek, event.key.keysym.sym, OFF);
+				keys &= ~keyaction(event.key.keysym.sym);
 				break;
 			case SDL_QUIT:
-				ek.setExit(ON);
+				keys |= (1 << 30);
 				break;
 		}
 	}

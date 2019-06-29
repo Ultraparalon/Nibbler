@@ -21,6 +21,8 @@ public:
 	int getMouseY() const;
 	int getMouseX() const;
 
+	void eventRefresh(const int, const int, const unsigned int);
+
 private:
 	bool exit;
 	bool esc;

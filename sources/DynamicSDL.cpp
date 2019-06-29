@@ -6,14 +6,9 @@ DynamicSdl::DynamicSdl()
 
 DynamicSdl::~DynamicSdl() {}
 
-void DynamicSdl::eventRefresh(EventKeep & ek)
+void DynamicSdl::drawObject(const int y, const int x, const unsigned int type)
 {
-	input.refresh(ek);
-}
-
-void DynamicSdl::drawObjects(std::list<Drawable const * const> & objects)
-{
-	gui.drawObjects(objects);
+	gui.drawObject(y, x, type);
 }
 
 void DynamicSdl::render()
@@ -21,12 +16,33 @@ void DynamicSdl::render()
 	gui.render();
 }
 
-void DynamicSdl::playSounds(std::list<eSound> & sounds)
+void DynamicSdl::playSound(const int sound)
 {
 
 }
 
-void DynamicSdl::playMusic(eMusic)
+void DynamicSdl::playMusic(const int music)
 {
 
+}
+
+
+void DynamicSdl::inputRefresh()
+{
+	input.refresh();
+}
+
+int DynamicSdl::getMouseY() const
+{
+	return input.getMouseY();
+}
+
+int DynamicSdl::getMouseX() const
+{
+	return input.getMouseX();
+}
+
+unsigned int DynamicSdl::getKeys() const
+{
+	return input.getKeys();
 }

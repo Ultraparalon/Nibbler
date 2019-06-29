@@ -63,3 +63,14 @@ int EventKeep::getMouseX() const
 {
 	return mouseX;
 }
+
+void EventKeep::eventRefresh(const int y, const int x,
+	const unsigned int keys)
+{
+	mouseY = y;
+	mouseX = x;
+	setExit(keys & (1 << 30));
+	setEsc(keys & (1 << 5));
+	setRmb(keys & (1 << 1));
+	setLmb(keys & 1);
+}
