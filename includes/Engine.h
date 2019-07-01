@@ -2,9 +2,9 @@
 #define ENGINE_H
 
 #include <iostream>
+#include <dlfcn.h>
 
 #include "IDynamic.h"
-#include "DynamicSdl.h"
 #include "Nibbler.h"
 #include "EventKeep.h"
 
@@ -15,11 +15,17 @@ public:
 	Engine();
 	~Engine();
 
-	void	run();
+	void run();
+
+	void changeLib(const eDynamicLib);
 
 private:
 	Nibbler m_nibbler;
 	EventKeep m_events;
+
+	eDynamicLib currentLibrary;
+
+	void * m_handle;
 	IDynamic * m_dynamic;
 	
 };

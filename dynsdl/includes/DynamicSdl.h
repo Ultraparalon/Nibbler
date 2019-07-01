@@ -1,7 +1,7 @@
 #ifndef DYNAMICSDL_H
 #define DYNAMICSDL_H
 
-#include "IDynamic.h"
+#include "../../includes/IDynamic.h"
 #include "SdlGui.h"
 #include "SdlInput.h"
 

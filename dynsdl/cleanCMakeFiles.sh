@@ -3,7 +3,7 @@ MFILES="CMakeFiles"
  
 if [ -f "$MAKE" ];
 then
-	make clean
+	# make clean
 	rm -f $MAKE
 	echo "$MAKE removed"
 else
@@ -19,10 +19,3 @@ else
 fi
 
 rm -f cmake_install.cmake CMakeCache.txt
-
-cd dynsdl
-sh cleanCMakeFiles.sh
-cd ..
-
-cd dynsfml
-sh cleanCMakeFiles.sh

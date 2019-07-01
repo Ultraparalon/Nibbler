@@ -7,14 +7,14 @@ enum gameStates {
 	GAME,
 	MENU,
 	GAMEOVER
-}
+};
 
 enum snakeDirections {
 	UP, 
 	DOWN,
 	RIGHT,
 	LEFT
-}
+};
 
 typedef struct	cube {
 	int x;
@@ -22,23 +22,23 @@ typedef struct	cube {
 	float size;
 }				Cube;
 
-class Nibbler : public IDynamic
+class Nibbler
 {
-	int						width;
-	int 					height;
-	std::vector<Cube>		*Nibbler;
-	enum snakeDirections	direction;
-	enum gameStates			state;
+	// int						width;
+	// int 					height;
+	// std::vector<Cube>		*Nibbler;
+	// enum snakeDirections	direction;
+	// enum gameStates			state;
 
-	Nibbler();
 
 public:
-	Nibbler(int, int);
+	// Nibbler(int, int);
+	Nibbler();
 	~Nibbler();
 
-	void run();
-	void switchState(enum gameStates);
-	void changeDirection(enum snakeDirections);
+	// void run();
+	// void switchState(enum gameStates);
+	// void changeDirection(enum snakeDirections);
 
 };
 

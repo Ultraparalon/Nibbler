@@ -1,6 +1,13 @@
 #ifndef EVENTKEEP_H
 #define EVENTKEEP_H
 
+enum eDynamicLib
+{
+	SDL,
+	SFML,
+	OPENGL	
+};
+
 class EventKeep
 {
 public:
@@ -21,6 +28,8 @@ public:
 	int getMouseY() const;
 	int getMouseX() const;
 
+	eDynamicLib getCurrentLib() const;
+
 	void eventRefresh(const int, const int, const unsigned int);
 
 private:
@@ -31,6 +40,8 @@ private:
 	bool rmb;
 	int mouseY;
 	int mouseX;
+
+	eDynamicLib dynamicLib;
 
 };
 

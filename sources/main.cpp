@@ -21,5 +21,7 @@ int	main(int argc, char **argv)
 		std::cout << "Hello!" << std::endl;
 	}
 
+	system("leaks nibbler");
+
 	return 0;
 }

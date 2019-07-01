@@ -1,7 +1,7 @@
 #include "EventKeep.h"
 
 EventKeep::EventKeep() : exit(false), esc(false), lmb(false), rmb(false),
-							mouseY(0), mouseX(0) {}
+							mouseY(0), mouseX(0), dynamicLib(SDL) {}
 EventKeep::~EventKeep() {}
 
 void EventKeep::setExit(const bool val)
@@ -64,6 +64,11 @@ int EventKeep::getMouseX() const
 	return mouseX;
 }
 
+eDynamicLib EventKeep::getCurrentLib() const
+{
+	return dynamicLib;
+}
+
 void EventKeep::eventRefresh(const int y, const int x,
 	const unsigned int keys)
 {
@@ -73,4 +78,17 @@ void EventKeep::eventRefresh(const int y, const int x,
 	setEsc(keys & (1 << 5));
 	setRmb(keys & (1 << 1));
 	setLmb(keys & 1);
+
+	if (keys & (1 << 29))
+	{
+		dynamicLib = SDL;
+	}
+	else if (keys & (1 << 28))
+	{
+		dynamicLib = SFML;
+	}
+	else if (keys & (1 << 27))
+	{
+		dynamicLib = OPENGL;
+	}
 }

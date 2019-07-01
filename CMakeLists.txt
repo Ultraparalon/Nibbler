@@ -3,25 +3,13 @@ set(CMAKE_CXX_STANDARD 14)
 
 project(nibbler)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+include_directories("${PROJECT_SOURCE_DIR}/dynsdl")
+add_subdirectory(dynsdl)
 
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-find_package(SDL2_mixer REQUIRED)
-find_package(SDL2_ttf REQUIRED)
+include_directories("${PROJECT_SOURCE_DIR}/dynsfml")
+add_subdirectory(dynsfml)
 
 file(GLOB SOURCES sources/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-include_directories(includes)
-
-include_directories(${SDL2_INCLUDE_DIRS}
-					${SDL2_IMAGE_INCLUDE_DIRS}
-					${SDL2_MIXER_INCLUDE_DIRS}
-					${SDL2_TTF_INCLUDE_DIRS})
-
-target_link_libraries(${PROJECT_NAME}	${SDL2_LIBRARIES}
-										${SDL2_IMAGE_LIBRARIES}
-										${SDL2_MIXER_LIBRARIES}
-										${SDL2_TTF_LIBRARIES})
-										
+include_directories(includes)										

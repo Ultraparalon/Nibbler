@@ -16,11 +16,11 @@ public:
 	void refresh();
 
 private:
-	SDL_Event event;
-
 	int mousey;
 	int mousex;
 	unsigned int keys;
+
+	SDL_Event event;
 	
 };
 

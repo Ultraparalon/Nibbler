@@ -46,3 +46,8 @@ unsigned int DynamicSdl::getKeys() const
 {
 	return input.getKeys();
 }
+
+extern "C" IDynamic * create()
+{
+	return new DynamicSdl();
+}

@@ -1,6 +1,6 @@
 #include "SdlInput.h"
 
-SdlInput::SdlInput() {}
+SdlInput::SdlInput() : mousey(0), mousex(0), keys(0) {}
 SdlInput::~SdlInput() {}
 
 int SdlInput::getMouseY() const
@@ -23,6 +23,8 @@ static unsigned int keyaction(const SDL_Keycode key)
 	switch (key)
 	{
 		case SDLK_ESCAPE: return (1 << 5);
+		case SDLK_1: return (1 << 29);
+		case SDLK_2: return (1 << 28);
 		default: return 0;
 	}
 }
