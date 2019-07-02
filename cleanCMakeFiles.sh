@@ -26,3 +26,7 @@ cd ..
 
 cd dynsfml
 sh cleanCMakeFiles.sh
+cd ..
+
+cd dynopengl
+sh cleanCMakeFiles.sh
