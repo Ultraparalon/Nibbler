@@ -1,18 +1,25 @@
-#ifndef DYNAMICSFML_H
-#define DYNAMICSFML_H
+#ifndef DYNAMICOPENGL_H
+#define DYNAMICOPENGL_H
 
 #include "../../includes/IDynamic.h"
 
-#include <SFML/Window.hpp>
+#include <iostream>
 
-// #include "SfmlGui.h"
-#include "SfmlInput.h"
+// #include <glm/glm.hpp>
+#include <GL/glew.h>
 
-class DynamicSfml : public IDynamic
+// #include <glad/gl.h>
+#include <GLFW/glfw3.h>
+#include <GLUT/glut.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <OpenGL/glext.h>
+
+class DynamicOpengl : public IDynamic
 {
 public:
-	DynamicSfml();
-	~DynamicSfml();
+	DynamicOpengl();
+	~DynamicOpengl();
 
 	void drawObject(const int, const int, const unsigned int);
 	void render();
@@ -29,7 +36,7 @@ private:
 	int m_mousex;
 	unsigned int m_keys;
 
-	sf::Window m_window;
+	GLFWwindow * window;
 	
 };
 

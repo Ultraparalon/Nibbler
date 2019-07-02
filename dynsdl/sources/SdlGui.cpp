@@ -17,7 +17,7 @@ SdlGui::SdlGui()
 	// fullscreen window
 	// win = SDL_CreateWindow("Test", 0, 0, displayMode.w, displayMode.h, SDL_WINDOW_SHOWN);
 	
-	win = SDL_CreateWindow("Test", 0, 0, 500, 1000, SDL_WINDOW_SHOWN);
+	win = SDL_CreateWindow("Test", 0, 0, 1024, 768, SDL_WINDOW_SHOWN);
 	if (win == nullptr)
 	{
 		error("SDL_CreateWindow Error: ");
@@ -47,6 +47,7 @@ void SdlGui::drawObject(const int y, const int x, const unsigned int type)
 
 void SdlGui::render()
 {
+	SDL_RenderClear(ren);
 	SDL_RenderPresent(ren);
 
 }
