@@ -1,3 +1,0 @@
-/Users/vkaidans/Desktop/Projects/nibbler/dynopengl/CMakeFiles/rebuild_cache.dir
-/Users/vkaidans/Desktop/Projects/nibbler/dynopengl/CMakeFiles/edit_cache.dir
-/Users/vkaidans/Desktop/Projects/nibbler/dynopengl/CMakeFiles/dynopengl.dir
