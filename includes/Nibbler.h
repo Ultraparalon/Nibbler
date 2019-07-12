@@ -2,6 +2,11 @@
 #define NIBBLER_H
 
 #include <vector>
+#include <list>
+#include <ctime>
+
+#include "EventKeep.h"
+#include "Drawable.h"
 
 enum gameStates {
 	GAME,
@@ -24,21 +29,29 @@ typedef struct	cube {
 
 class Nibbler
 {
-	// int						width;
-	// int 					height;
-	// std::vector<Cube>		*Nibbler;
-	// enum snakeDirections	direction;
-	// enum gameStates			state;
-
-
 public:
 	// Nibbler(int, int);
 	Nibbler();
 	~Nibbler();
 
-	// void run();
+	void run(const EventKeep &);
+	std::list<Drawable> const & getDrawable();
 	// void switchState(enum gameStates);
 	// void changeDirection(enum snakeDirections);
+
+private:
+	int m_width;
+	int m_height;
+	enum snakeDirections	direction;
+
+	// std::list<> food;
+	std::list<Drawable> snake;
+	std::list<Drawable> gameObjects;
+	// std::vector<Cube>		*Nibbler;
+	// enum gameStates			state;
+
+	void move();
+
 
 };
 

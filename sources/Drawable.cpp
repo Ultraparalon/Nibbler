@@ -6,6 +6,7 @@ Drawable::Drawable(const int y, const int x,
 Drawable::Drawable(const int y, const int x, const eTexture texture,
 	const std::string name) : m_posy(y), m_posx(x), m_texture(texture),
 	m_name(name) {}
+Drawable::~Drawable() {}
 
 int Drawable::getPosY() const
 {

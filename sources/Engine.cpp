@@ -39,23 +39,36 @@ void	Engine::run()
 	std::cout << "Engine is succefuly runing" << std::endl;
 	while (!m_events.getExit())
 	{
+		// events
 		m_dynamic->inputRefresh();
 		m_events.eventRefresh(m_dynamic->getMouseY(),
 			m_dynamic->getMouseX(), m_dynamic->getKeys());
-
-		// temporary check
-		if (m_events.getEsc())
-		{
-			break;
-		}
-		// m_dynamic->eventRefresh(m_events);
-		m_dynamic->drawObject(100, 100, 1);
-		m_dynamic->render();
 
 		if (m_events.getCurrentLib() != currentLibrary)
 		{
 			changeLib(m_events.getCurrentLib());
 		}
+		// temporary check
+		if (m_events.getEsc())
+		{
+			break;
+		}
+
+		// game logic
+		m_nibbler.run(m_events);
+		
+		// draw screen
+		// m_dynamic->drawBackground(x);
+		m_dynamic->drawBackground(0);
+		std::list<Drawable> const & draw = m_nibbler.getDrawable();
+		for (std::list<Drawable>::const_iterator it = draw.begin();
+			it != draw.end(); it++)
+		{
+			m_dynamic->drawObject((*it).getPosY() * 32, (*it).getPosX() * 32,
+				(*it).getTexture());	
+		}
+		// m_dynamic->drawObject(100, 100, 0);
+		m_dynamic->render();
 	}
 
 }

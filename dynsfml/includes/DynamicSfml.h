@@ -14,6 +14,7 @@ public:
 	DynamicSfml();
 	~DynamicSfml();
 
+	void drawBackground(const unsigned int) {} // realize this
 	void drawObject(const int, const int, const unsigned int);
 	void render();
 	void playSound(const int);

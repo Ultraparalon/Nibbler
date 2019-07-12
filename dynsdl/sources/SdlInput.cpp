@@ -25,6 +25,10 @@ static unsigned int keyaction(const SDL_Keycode key)
 		case SDLK_ESCAPE: return (1 << 5);
 		case SDLK_1: return (1 << 29);
 		case SDLK_2: return (1 << 28);
+		case SDLK_w: return (1 << 6);
+		case SDLK_s: return (1 << 7);
+		case SDLK_a: return (1 << 8);
+		case SDLK_d: return (1 << 9);
 		default: return 0;
 	}
 }

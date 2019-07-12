@@ -1,94 +1,122 @@
 #include "EventKeep.h"
 
-EventKeep::EventKeep() : exit(false), esc(false), lmb(false), rmb(false),
-							mouseY(0), mouseX(0), dynamicLib(SDL) {}
+EventKeep::EventKeep() : m_exit(false), m_esc(false),
+  m_up(false), m_down(false), m_left(false), m_right(false),
+  m_lmb(false), m_rmb(false),
+  m_mouseY(0), m_mouseX(0), m_dynamicLib(SDL) {}
 EventKeep::~EventKeep() {}
 
-void EventKeep::setExit(const bool val)
-{
-	exit = val;
-}
+// void EventKeep::setExit(const bool val)
+// {
+// 	exit = val;
+// }
 
-void EventKeep::setEsc(const bool val)
-{
-	esc = val;
-}
+// void EventKeep::setEsc(const bool val)
+// {
+// 	esc = val;
+// }
 
-void EventKeep::setLmb(const bool val)
-{
-	lmb = val;
-}
+// void EventKeep::setLmb(const bool val)
+// {
+// 	lmb = val;
+// }
 
-void EventKeep::setRmb(const bool val)
-{
-	rmb = val;
-}
+// void EventKeep::setRmb(const bool val)
+// {
+// 	rmb = val;
+// }
 
-void EventKeep::setMouseY(const int val)
-{
-	mouseY = val;
-}
+// void EventKeep::setMouseY(const int val)
+// {
+// 	mouseY = val;
+// }
 
-void EventKeep::setMouseX(const int val)
-{
-	mouseX = val;
-}
+// void EventKeep::setMouseX(const int val)
+// {
+// 	mouseX = val;
+// }
 
 bool EventKeep::getExit() const
 {
-	return exit;
+	return m_exit;
 }
 
 bool EventKeep::getEsc() const
 {
-	return esc;
+	return m_esc;
+}
+
+bool EventKeep::getUp() const
+{
+	return m_up;
+}
+
+bool EventKeep::getDown() const
+{
+	return m_down;
+}
+
+bool EventKeep::getLeft() const
+{
+	return m_left;
+}
+
+bool EventKeep::getRight() const
+{
+	return m_right;
 }
 
 bool EventKeep::getLmb() const
 {
-	return lmb;
+	return m_lmb;
 }
 
 bool EventKeep::getRmb() const
 {
-	return rmb;
+	return m_rmb;
 }
 
 int EventKeep::getMouseY() const
 {
-	return mouseY;
+	return m_mouseY;
 }
 
 int EventKeep::getMouseX() const
 {
-	return mouseX;
+	return m_mouseX;
 }
 
 eDynamicLib EventKeep::getCurrentLib() const
 {
-	return dynamicLib;
+	return m_dynamicLib;
 }
 
 void EventKeep::eventRefresh(const int y, const int x,
 	const unsigned int keys)
 {
-	mouseY = y;
-	mouseX = x;
-	setExit(keys & (1 << 30));
-	setEsc(keys & (1 << 5));
-	setRmb(keys & (1 << 1));
-	setLmb(keys & 1);
+	m_mouseY = y;
+	m_mouseX = x;
+	m_lmb = (keys & 1);
+	m_rmb = (keys & (1 << 1));
+
+	m_exit = (keys & (1 << 30));
+	m_esc = (keys & (1 << 5));
+
+	m_up = keys & (1 << 6);
+	m_down = keys & (1 << 7);
+	m_left = keys & (1 << 8);
+	m_right = keys & (1 << 9);
 
 	if (keys & (1 << 29))
 	{
-		dynamicLib = SDL;
+		m_dynamicLib = SDL;
 	}
 	else if (keys & (1 << 28))
 	{
-		dynamicLib = SFML;
+		m_dynamicLib = SFML;
 	}
 	else if (keys & (1 << 27))
 	{
-		dynamicLib = OPENGL;
+		m_dynamicLib = OPENGL;
 	}
 }

@@ -6,6 +6,11 @@ DynamicSdl::DynamicSdl()
 
 DynamicSdl::~DynamicSdl() {}
 
+void DynamicSdl::drawBackground(const unsigned int)
+{
+	gui.drawBackground(0);
+}
+
 void DynamicSdl::drawObject(const int y, const int x, const unsigned int type)
 {
 	gui.drawObject(y, x, type);

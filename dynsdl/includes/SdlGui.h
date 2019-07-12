@@ -14,6 +14,7 @@ public:
 	SdlGui();
 	~SdlGui();
 
+	void drawBackground(const unsigned int);
 	void drawObject(const int, const int, const unsigned int);
 	void render();
 

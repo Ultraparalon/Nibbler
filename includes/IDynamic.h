@@ -8,6 +8,7 @@ class IDynamic
 public:
 	virtual ~IDynamic() {};
 
+	virtual void drawBackground(const unsigned int) = 0;
 	virtual void drawObject(const int, const int, const unsigned int) = 0;
 	virtual void render() = 0;
 

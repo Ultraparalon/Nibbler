@@ -40,6 +40,11 @@ SdlGui::~SdlGui()
 	SDL_DestroyWindow(win);
 }
 
+void SdlGui::drawBackground(const unsigned int)
+{
+	SDL_RenderClear(ren);
+}
+
 void SdlGui::drawObject(const int y, const int x, const unsigned int type)
 {
 	Texture * texture = tf.createTexture(y, x, type);
