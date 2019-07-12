@@ -1,10 +1,12 @@
 #ifndef SDLGUI_H
 #define SDLGUI_H
 
-#include <SDL.h>
 #include <iostream>
 #include <list>
 
+#include <SDL.h>
+
+#include "TextureFactory.h"
 
 class SdlGui
 {
@@ -20,6 +22,8 @@ private:
 	SDL_DisplayMode displayMode;
 	SDL_Window * win;
 	SDL_Renderer * ren;
+
+	TextureFactory tf;
 	
 };
 

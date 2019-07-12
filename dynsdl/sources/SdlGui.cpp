@@ -31,7 +31,7 @@ SdlGui::SdlGui()
 
 	// SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN); //fullscreen mode
 
-	// tFactory.init(ren); //init texture factory
+	tf.initialize(ren); //init texture factory
 }
 
 SdlGui::~SdlGui()
@@ -42,12 +42,20 @@ SdlGui::~SdlGui()
 
 void SdlGui::drawObject(const int y, const int x, const unsigned int type)
 {
+	Texture * texture = tf.createTexture(y, x, type);
 
+	if (texture != nullptr)
+	{
+		SDL_RenderCopy(ren, texture->getTexture(),
+			NULL, texture->getRect());
+
+		delete texture;
+	}
 }
 
 void SdlGui::render()
 {
-	SDL_RenderClear(ren);
+	// SDL_RenderClear(ren);
 	SDL_RenderPresent(ren);
 
 }

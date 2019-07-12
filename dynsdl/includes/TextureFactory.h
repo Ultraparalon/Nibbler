@@ -2,6 +2,7 @@
 #define TEXTUREFACTORY_H
 
 #include <vector>
+#include <iostream>
 
 #include <SDL.h>
 #include <SDL_image.h>

@@ -49,6 +49,7 @@ void	Engine::run()
 			break;
 		}
 		// m_dynamic->eventRefresh(m_events);
+		m_dynamic->drawObject(100, 100, 1);
 		m_dynamic->render();
 
 		if (m_events.getCurrentLib() != currentLibrary)

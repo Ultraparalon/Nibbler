@@ -10,7 +10,7 @@ public:
 	~Texture();
 
 	SDL_Texture * getTexture() const;
-	SDL_Rect * getRect() const;
+	SDL_Rect * getRect();
 
 private:
 	Texture() {};

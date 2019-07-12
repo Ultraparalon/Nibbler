@@ -9,7 +9,7 @@ SDL_Texture * Texture::getTexture() const
 	return m_texture;
 }
 
-SDL_Rect * Texture::getRect() const
+SDL_Rect * Texture::getRect()
 {
 	return &m_rect;
 }
