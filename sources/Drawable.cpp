@@ -49,6 +49,10 @@ void Drawable::setName(const std::string str)
 	m_name = str;
 }
 
+void Drawable::setTexture(const eTexture t) {
+    m_texture = t;
+}
+
 void Drawable::moveY(const int val)
 {
 	m_posy += val;
@@ -57,4 +61,13 @@ void Drawable::moveY(const int val)
 void Drawable::moveX(const int val)
 {
 	m_posx += val;
+}
+
+
+bool Drawable::operator==(Drawable const &d) const {
+    return (this->getPosX() == d.getPosX() && this->getPosY() == d.getPosY());
+}
+
+bool Drawable::operator!=(Drawable const &d) const {
+    return !(*this == d);
 }
