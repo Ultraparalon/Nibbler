@@ -3,7 +3,7 @@
 EventKeep::EventKeep() : m_exit(false), m_esc(false),
   m_up(false), m_down(false), m_left(false), m_right(false),
   m_lmb(false), m_rmb(false),
-  m_mouseY(0), m_mouseX(0), m_dynamicLib(SDL) {}
+  m_mouseY(0), m_mouseX(0), m_dynamicLib(SFML) {}
 EventKeep::~EventKeep() {}
 
 // void EventKeep::setExit(const bool val)

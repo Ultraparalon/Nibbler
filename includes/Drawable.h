@@ -7,7 +7,9 @@ enum eTexture
 {
 	SNAKE_HEAD,
 	SNAKE_BODY,
-	SNAKE_TAIL
+	FOOD,
+	BONUS
+
 };
 
 class Drawable

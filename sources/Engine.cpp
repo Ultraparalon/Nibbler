@@ -3,9 +3,18 @@
 Engine::Engine()
 {
 	// m_dynamic = new DynamicSdl();
-	currentLibrary = SDL;
+	// currentLibrary = SDL;
 
-	m_handle = dlopen("dynsdl/libdynsdl.dylib", RTLD_LAZY);
+	// m_handle = dlopen("dynsdl/libdynsdl.dylib", RTLD_LAZY);
+	// if (!m_handle)
+	// {
+	// 	std::cout << "Couldn't open dyn lib" << std::endl;
+	// 	std::cout << dlerror() << std::endl;
+	// 	exit(1);
+	// }
+	currentLibrary = SFML;
+
+	m_handle = dlopen("dynsfml/libdynsfml.dylib", RTLD_LAZY);
 	if (!m_handle)
 	{
 		std::cout << "Couldn't open dyn lib" << std::endl;

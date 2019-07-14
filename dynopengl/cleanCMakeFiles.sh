@@ -3,7 +3,7 @@ MFILES="CMakeFiles"
  
 if [ -f "$MAKE" ];
 then
-	make clean
+	# make clean
 	rm -f $MAKE
 	echo "$MAKE removed"
 else

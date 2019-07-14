@@ -4,7 +4,10 @@ project(dynsfml)
 
 find_package(SFML 2.5 REQUIRED system window graphics network audio)
 
-set(SOURCE_LIB sources/DynamicSfml.cpp)
+set(SRC sources/)
+set(SOURCE_LIB	${SRC}DynamicSfml.cpp
+				${SRC}SfmlGui.cpp
+				${SRC}SfmlInput.cpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_LIB})
 include_directories(includes)

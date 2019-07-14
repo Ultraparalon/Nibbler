@@ -1,23 +1,29 @@
 #include "DynamicSfml.h"
 
-DynamicSfml::DynamicSfml() : m_mousey(0), m_mousex(0), m_keys(0)
+DynamicSfml::DynamicSfml() : gui(m_window), input(m_window)
 {
 	m_window.create(sf::VideoMode(800, 600), "sfml");
+	m_window.setKeyRepeatEnabled(false);
 }
 DynamicSfml::~DynamicSfml()
 {
 	m_window.close();
 }
 
+void DynamicSfml::drawBackground(const unsigned int type)
+{
+	gui.drawBackground(type);
+}
+
 void DynamicSfml::drawObject(const int y, const int x,
 	const unsigned int type)
 {
-
+	gui.drawObject(y, x, type);
 }
 
 void DynamicSfml::render()
 {
-
+	gui.render();
 }
 
 void DynamicSfml::playSound(const int sound)
@@ -30,73 +36,24 @@ void DynamicSfml::playMusic(const int music)
 
 }
 
-static unsigned int keyaction(const sf::Keyboard::Key key)
-{
-	switch (key)
-	{
-		case sf::Keyboard::Escape: return (1 << 5);
-		case sf::Keyboard::Num1: return (1 << 29);
-		case sf::Keyboard::Num2: return (1 << 28);
-		default: return 0;
-	}
-}
-
-static unsigned int mouseaction(const sf::Mouse::Button button)
-{
-	switch (button)
-	{
-		case sf::Mouse::Left: return 1;
-		case sf::Mouse::Right: return (1 << 1);
-		default: return 0;
-	}
-}
-
 void DynamicSfml::inputRefresh()
 {
-	sf::Event event;
-
-	while (m_window.pollEvent(event))
-	{
-		switch (event.type)
-		{
-			case sf::Event::MouseMoved:
-				m_mousey = event.mouseMove.y;
-				m_mousex = event.mouseMove.x;
-				break;
-			case sf::Event::MouseButtonPressed:
-				m_keys |= mouseaction(event.mouseButton.button);
-				break;
-			case sf::Event::MouseButtonReleased:
-				m_keys &= ~mouseaction(event.mouseButton.button);
-				break;
-			case sf::Event::KeyPressed:
-				m_keys |= keyaction(event.key.code);
-				break;
-			case sf::Event::KeyReleased:
-				m_keys &= ~keyaction(event.key.code);
-				break;
-			case sf::Event::Closed:
-				m_keys |= (1 << 30);
-				break;
-			default: ;
-		}
-	}
-
+	input.refresh();
 }
 
 int DynamicSfml::getMouseY() const
 {
-	return m_mousey;
+	return input.getMouseY();
 }
 
 int DynamicSfml::getMouseX() const
 {
-	return m_mousex;
+	return input.getMouseX();
 }
 
 unsigned int DynamicSfml::getKeys() const
 {
-	return m_keys;
+	return input.getKeys();
 }
 
 extern "C" IDynamic * create()

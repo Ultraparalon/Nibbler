@@ -3,11 +3,9 @@ set(CMAKE_CXX_STANDARD 14)
 
 project(nibbler)
 
-include_directories("${PROJECT_SOURCE_DIR}/dynsdl")
 add_subdirectory(dynsdl)
-
-include_directories("${PROJECT_SOURCE_DIR}/dynsfml")
 add_subdirectory(dynsfml)
+add_subdirectory(dynopengl)
 
 file(GLOB SOURCES sources/*.cpp)
 

@@ -4,9 +4,9 @@ project(dynopengl)
 
 
 
+set(SRC sources/)
 
-
-add_executable(${PROJECT_NAME} sources/DynamicOpengl.cpp sources/main.cpp)
+add_library(${PROJECT_NAME} ${SRC}DynamicOpengl.cpp)
 include_directories(includes)
 
 find_package(GLUT REQUIRED)
@@ -27,4 +27,7 @@ include_directories(${GLEW_INCLUDE_DIRS})
 #add_subdirectory(glfw)
 #include_directories(glfw/include)
 
-target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES} glfw ${GLEW_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}	${OPENGL_LIBRARIES}
+										${GLUT_LIBRARIES}
+										glfw
+										${GLEW_LIBRARIES})

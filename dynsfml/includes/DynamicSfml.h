@@ -3,9 +3,10 @@
 
 #include "../../includes/IDynamic.h"
 
-#include <SFML/Window.hpp>
+// #include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
-// #include "SfmlGui.h"
+#include "SfmlGui.h"
 #include "SfmlInput.h"
 
 class DynamicSfml : public IDynamic
@@ -14,7 +15,7 @@ public:
 	DynamicSfml();
 	~DynamicSfml();
 
-	void drawBackground(const unsigned int) {} // realize this
+	void drawBackground(const unsigned int);
 	void drawObject(const int, const int, const unsigned int);
 	void render();
 	void playSound(const int);
@@ -26,11 +27,11 @@ public:
 	unsigned int getKeys() const;
 
 private:
-	int m_mousey;
-	int m_mousex;
-	unsigned int m_keys;
+	SfmlGui gui;
+	SfmlInput input;
 
-	sf::Window m_window;
+	sf::RenderWindow m_window;
+	sf::Event event;
 	
 };
 
