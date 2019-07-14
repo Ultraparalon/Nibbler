@@ -8,7 +8,8 @@ enum eTexture
 	SNAKE_HEAD,
 	SNAKE_BODY,
 	FOOD,
-	BONUS
+	BONUS,
+	OBSTACLE
 
 };
 

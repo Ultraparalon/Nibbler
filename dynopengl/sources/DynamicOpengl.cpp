@@ -1,5 +1,32 @@
 #include "DynamicOpengl.h"
 
+int g_keys = 0;
+
+static unsigned int keyaction(const int key)
+{
+	switch (key)
+	{
+		case GLFW_KEY_ESCAPE: return (1 << 5);
+		case GLFW_KEY_1: return (1 << 29);
+		case GLFW_KEY_2: return (1 << 28);
+		case GLFW_KEY_3: return (1 << 27);
+		case GLFW_KEY_W: return (1 << 6);
+		case GLFW_KEY_S: return (1 << 7);
+		case GLFW_KEY_A: return (1 << 8);
+		case GLFW_KEY_D: return (1 << 9);
+		default: return 0;
+	}
+}
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	switch (action)
+	{
+		case GLFW_PRESS: g_keys |= keyaction(key); break;
+		case GLFW_RELEASE: g_keys &= ~keyaction(key); break;
+	}
+}
+
 DynamicOpengl::DynamicOpengl()
 {
 	if (!glfwInit())
@@ -30,6 +57,12 @@ DynamicOpengl::DynamicOpengl()
 		exit(1);
 	}
 
+	glfwSetKeyCallback(window, &key_callback);
+
+	//for some weird reason it's not working(((
+	// glfwLoadTexture2D("dynopengl/resources/textures/snake_head.bmp", 0);
+	// glfwReadImage("dynopengl/resources/textures/snake_head.bmp", 0);
+
 }
 
 DynamicOpengl::~DynamicOpengl()
@@ -37,16 +70,15 @@ DynamicOpengl::~DynamicOpengl()
 	glfwDestroyWindow(window);
 }
 
-void DynamicOpengl::drawObject(const int y, const int x,
-	const unsigned int type)
+void DynamicOpengl::drawBackground(const unsigned int)
 {
 
 }
 
-static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void DynamicOpengl::drawObject(const int y, const int x,
+	const unsigned int type)
 {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
+
 }
 
 void DynamicOpengl::render()
@@ -58,18 +90,7 @@ void DynamicOpengl::render()
 	// {
 
 	// }
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-do{
-    // Пока что ничего не выводим. Это будет в уроке 2.
-
-    // Сбрасываем буферы
-    // glfwSwapBuffers(window);
-    glfwPollEvents();
-
-} // Проверяем нажатие клавиши Escape или закрытие окна
-while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-glfwWindowShouldClose(window) == 0 );
 }
 
 void DynamicOpengl::playSound(const int sound)
@@ -82,9 +103,21 @@ void DynamicOpengl::playMusic(const int music)
 
 }
 
+
 void DynamicOpengl::inputRefresh()
 {
+	// glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
+	// while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
+	// glfwWindowShouldClose(window) == 0 )
+	// {
+	//     glfwPollEvents();
+	// }
+	glfwPollEvents();
+
+	m_keys = g_keys;
+
+	// key_callback
 }
 
 int DynamicOpengl::getMouseY() const
@@ -100,4 +133,9 @@ int DynamicOpengl::getMouseX() const
 unsigned int DynamicOpengl::getKeys() const
 {
 	return m_keys;
+}
+
+extern "C" IDynamic * create()
+{
+	return new DynamicOpengl();
 }

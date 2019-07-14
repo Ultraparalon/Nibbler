@@ -13,6 +13,7 @@ class Engine
 
 public:
 	Engine();
+	Engine(const int, const int);
 	~Engine();
 
 	void run();

@@ -30,6 +30,7 @@ void TextureFactory::initialize(SDL_Renderer * ren)
 	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/snake_body.png"));
 	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/food.png"));
 	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/bonus.png"));
+	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/obstacle.png"));
 }
 
 Texture * TextureFactory::createTexture(const int y, const int x,

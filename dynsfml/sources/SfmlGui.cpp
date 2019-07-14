@@ -22,6 +22,7 @@ SfmlGui::SfmlGui(sf::RenderWindow & win) : m_window(win)
 	m_textures.push_back(loadtxr("dynsfml/resources/textures/snake_body.png"));
 	m_textures.push_back(loadtxr("dynsfml/resources/textures/food.png"));
 	m_textures.push_back(loadtxr("dynsfml/resources/textures/bonus.png"));
+	m_textures.push_back(loadtxr("dynsfml/resources/textures/obstacle.png"));
 }
 
 SfmlGui::~SfmlGui()

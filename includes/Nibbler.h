@@ -4,6 +4,7 @@
 #include <vector>
 #include <list>
 #include <ctime>
+#include <iostream>
 
 #include "EventKeep.h"
 #include "Drawable.h"
@@ -28,14 +29,16 @@ public:
 	Nibbler();
 	~Nibbler();
 
+	void setPoleSize(const int, const int);
+
 	void run(const EventKeep &);
 	std::list<Drawable> const & getDrawable();
 	// void switchState(enum gameStates);
 	// void changeDirection(enum snakeDirections);
 
 private:
-	int m_width;
 	int m_height;
+	int m_width;
 	enum snakeDirections	direction;
 	enum gameStates         state;
 
@@ -47,6 +50,7 @@ private:
 	// std::vector<Cube>		*Nibbler;
 	// enum gameStates			state;
 
+	bool tryToMove(Drawable &);
 	void move();
 
 	/* functions to handle game states */

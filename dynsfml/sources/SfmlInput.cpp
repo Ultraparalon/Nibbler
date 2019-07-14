@@ -28,6 +28,7 @@ static unsigned int keyaction(const sf::Keyboard::Key key)
 		case sf::Keyboard::Escape: return (1 << 5);
 		case sf::Keyboard::Num1: return (1 << 29);
 		case sf::Keyboard::Num2: return (1 << 28);
+		case sf::Keyboard::Num3: return (1 << 27);
 		case sf::Keyboard::W: return (1 << 6);
 		case sf::Keyboard::S: return (1 << 7);
 		case sf::Keyboard::A: return (1 << 8);
@@ -60,19 +61,15 @@ void SfmlInput::refresh()
 				break;
 			case sf::Event::MouseButtonPressed:
 				m_keys |= mouseaction(event.mouseButton.button);
-				std::cout << "Key pressed" << std::endl;
 				break;
 			case sf::Event::MouseButtonReleased:
 				m_keys &= ~mouseaction(event.mouseButton.button);
-				std::cout << "Key released" << std::endl;
 				break;
 			case sf::Event::KeyReleased:
 				m_keys &= ~keyaction(event.key.code);
-				std::cout << "Key released" << std::endl;
 				break;
 			case sf::Event::KeyPressed:
 				m_keys |= keyaction(event.key.code);
-				std::cout << "Key pressed" << std::endl;
 				break;
 			case sf::Event::Closed:
 				m_keys |= (1 << 30);

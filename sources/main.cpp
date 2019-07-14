@@ -9,7 +9,7 @@ void	wizard(int y, int x)
 		std::cout << "map is too small" << std::endl;
 		exit(0);
 	}
-	Engine engine;
+	Engine engine(y, x);
 	engine.run();
 }
 

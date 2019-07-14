@@ -33,6 +33,12 @@ Engine::Engine()
 
 	m_dynamic = create();
 }
+
+Engine::Engine(const int y, const int x) : Engine()
+{
+	m_nibbler.setPoleSize(y, x);
+}
+
 Engine::~Engine()
 {
 	delete m_dynamic;
@@ -106,6 +112,7 @@ void	Engine::changeLib(const eDynamicLib eLib)
 	if (!m_handle)
 	{
 		std::cout << dlerror() << std::endl;
+		exit(1);
 	}
 	else
 	{
@@ -118,6 +125,7 @@ void	Engine::changeLib(const eDynamicLib eLib)
 	if (!create)
 	{
 		std::cout << dlerror() << std::endl;
+		exit(1);
 	}
 
 	m_dynamic = create();
