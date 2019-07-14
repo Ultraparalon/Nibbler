@@ -28,12 +28,15 @@ public:
 
 	void setPosY(const int);
 	void setPosX(const int);
-	void setPos(const int, const int);
+	void setPos(const int y, const int x);
 	void setName(const std::string);
+	void setTexture(const eTexture);
 
 	void moveY(const int);
 	void moveX(const int);
 
+	bool operator==(Drawable const &) const;
+	bool operator!=(Drawable const &) const;
 private:
 	int m_posy;
 	int m_posx;
