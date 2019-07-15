@@ -9,8 +9,9 @@ enum eTexture
 	SNAKE_BODY,
 	FOOD,
 	BONUS,
-	OBSTACLE
-
+	OBSTACLE,
+	NEW_GAME,
+	EXIT
 };
 
 class Drawable
@@ -20,10 +21,14 @@ public:
 	Drawable(const int, const int, const eTexture);
 	Drawable(const int, const int,
 		const eTexture, const std::string);
+	Drawable(const int, const int, const int, const int,
+		const eTexture, const std::string);
 	~Drawable();
 
 	int getPosY() const;
 	int getPosX() const;
+	int getHeight() const;
+	int getWidth() const;
 	eTexture getTexture() const;
 	std::string getName() const;
 
@@ -38,9 +43,13 @@ public:
 
 	bool operator==(Drawable const &) const;
 	bool operator!=(Drawable const &) const;
+
 private:
 	int m_posy;
 	int m_posx;
+	int m_height;
+	int m_width;
+
 	eTexture m_texture;
 	std::string m_name;
 	

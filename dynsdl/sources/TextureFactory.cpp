@@ -31,6 +31,8 @@ void TextureFactory::initialize(SDL_Renderer * ren)
 	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/food.png"));
 	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/bonus.png"));
 	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/obstacle.png"));
+	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/new_game.png"));
+	m_textures.push_back(loadtxr(ren, "dynsdl/resources/textures/exit.png"));
 }
 
 Texture * TextureFactory::createTexture(const int y, const int x,
@@ -41,8 +43,8 @@ Texture * TextureFactory::createTexture(const int y, const int x,
 
 	SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 
-	rect.y = y + (rect.h >> 1);
-	rect.x = x + (rect.w >> 1);
+	rect.y = y; // + (rect.h >> 1);
+	rect.x = x; // + (rect.w >> 1);
 
 	return new Texture(texture, rect);
 }

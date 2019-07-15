@@ -2,16 +2,6 @@
 
 Engine::Engine()
 {
-	// m_dynamic = new DynamicSdl();
-	// currentLibrary = SDL;
-
-	// m_handle = dlopen("dynsdl/libdynsdl.dylib", RTLD_LAZY);
-	// if (!m_handle)
-	// {
-	// 	std::cout << "Couldn't open dyn lib" << std::endl;
-	// 	std::cout << dlerror() << std::endl;
-	// 	exit(1);
-	// }
 	currentLibrary = SFML;
 
 	m_handle = dlopen("dynsfml/libdynsfml.dylib", RTLD_LAZY);
@@ -76,11 +66,11 @@ void	Engine::run()
 		// m_dynamic->drawBackground(x);
 		m_dynamic->drawBackground(0);
 		std::list<Drawable> const & draw = m_nibbler.getDrawable();
-		for (std::list<Drawable>::const_iterator it = draw.begin();
-			it != draw.end(); it++)
+		for (auto it : draw)
 		{
-			m_dynamic->drawObject((*it).getPosY() * 32, (*it).getPosX() * 32,
-				(*it).getTexture());	
+			m_dynamic->drawObject(it.getPosY() * it.getHeight(),
+				it.getPosX() * it.getWidth(),
+				it.getTexture());	
 		}
 		// m_dynamic->drawObject(100, 100, 0);
 		m_dynamic->render();

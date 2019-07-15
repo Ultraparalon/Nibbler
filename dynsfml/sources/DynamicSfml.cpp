@@ -4,6 +4,7 @@ DynamicSfml::DynamicSfml() : gui(m_window), input(m_window)
 {
 	m_window.create(sf::VideoMode(1024, 768), "sfml");
 	m_window.setKeyRepeatEnabled(false);
+	m_window.setFramerateLimit(60);
 }
 DynamicSfml::~DynamicSfml()
 {

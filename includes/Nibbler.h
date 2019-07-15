@@ -8,10 +8,11 @@
 
 #include "EventKeep.h"
 #include "Drawable.h"
+#include "Button.h"
 
 enum gameStates {
-	GAME,
 	MENU,
+	GAME,
 	GAMEOVER
 };
 
@@ -44,19 +45,21 @@ private:
 
 	// std::list<> food;
 	std::list<Drawable> snake;
-	std::list<Drawable> gameObjects;
 	Drawable            food;
-	void generateFood();
-	// std::vector<Cube>		*Nibbler;
-	// enum gameStates			state;
 
-	bool tryToMove(Drawable &);
-	void move();
+	std::vector<Button> buttons;
+
+	std::list<Drawable> gameObjects;
 
 	/* functions to handle game states */
     void game(const EventKeep &);
     void menu(const EventKeep &);
     void gameOver(const EventKeep &);
+
+    //game funcs
+    bool tryToMove(Drawable &);
+	void move();
+	void generateFood();
 
 
     struct GameOverException : public std::exception {};

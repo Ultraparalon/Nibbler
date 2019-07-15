@@ -2,14 +2,12 @@
 
 Nibbler::Nibbler() : m_height(10), m_width(10), direction(UP)
 {
-	snake.push_front(Drawable((m_height >> 1), (m_width >> 1), SNAKE_HEAD));
-	snake.push_front(Drawable(snake.front().getPosY() + 1,
-		snake.front().getPosX(), SNAKE_BODY));
-	snake.push_front(Drawable(snake.front().getPosY() + 1,
-		snake.front().getPosX(), SNAKE_BODY));
+    buttons.push_back(Button(1, 1, 32, 128, NEW_GAME));
+    buttons.push_back(Button(3, 1, 32, 128, EXIT));
 
-	food.setTexture(FOOD);
-	generateFood();
+    food = Drawable(1, 1, FOOD);
+	// food.setTexture(FOOD);
+	// generateFood();
 }
 
 Nibbler::~Nibbler() {}
@@ -18,6 +16,26 @@ void Nibbler::setPoleSize(const int y, const int x)
 {
     m_height = y;
     m_width = x;
+}
+
+std::list<Drawable> const & Nibbler::getDrawable()
+{
+    return gameObjects;
+}
+
+void Nibbler::run(const EventKeep & ek)
+{
+    switch (state) {
+        case GAME:
+            game(ek);
+            break;
+        case MENU:
+            menu(ek);
+            break;
+        case GAMEOVER:
+            gameOver(ek);
+            break;
+    }
 }
 
 void Nibbler::game(const EventKeep & ek) 
@@ -47,52 +65,25 @@ void Nibbler::game(const EventKeep & ek)
     //     move();
     // }
     static clock_t tick = clock();
-    if (clock() > tick + CLOCKS_PER_SEC / 100)
+    if (clock() > tick + CLOCKS_PER_SEC / 200)
     {
         // std::cout << CLOCKS_PER_SEC << std::endl;
         tick = clock();
         move();
     }
-    std::cout << CLOCKS_PER_SEC << std::endl;
-    std::cout << clock() << std::endl;
-}
+    // std::cout << CLOCKS_PER_SEC << std::endl;
+    // std::cout << clock() << std::endl;
 
-void Nibbler::menu(const EventKeep &)
-{
+    //things to draw
+    gameObjects.clear();
 
-}
-
-void Nibbler::gameOver(const EventKeep &)
-{
-
-}
-
-void Nibbler::run(const EventKeep & ek)
-{
-	switch (state) {
-        case GAME:
-            game(ek);
-            break;
-        case MENU:
-            menu(ek);
-            break;
-        case GAMEOVER:
-            gameOver(ek);
-            break;
+    for (std::list<Drawable>::iterator it = snake.begin();
+        it != snake.end(); it++)
+    {
+        gameObjects.push_front(*it);
     }
-}
 
-std::list<Drawable> const & Nibbler::getDrawable()
-{
-	gameObjects.clear();
-
-	for (std::list<Drawable>::iterator it = snake.begin();
-		it != snake.end(); it++)
-	{
-		gameObjects.push_front(*it);
-	}
-
-	gameObjects.push_front(food);
+    gameObjects.push_front(food);
 
     for (int x = 0; x <= m_height + 1; x++)
     {
@@ -104,8 +95,6 @@ std::list<Drawable> const & Nibbler::getDrawable()
         gameObjects.push_front(Drawable(0, x, OBSTACLE));
         gameObjects.push_front(Drawable(m_height + 1, x, OBSTACLE));
     }
-
-	return gameObjects;
 }
 
 bool Nibbler::tryToMove(Drawable & head)
@@ -149,11 +138,11 @@ bool Nibbler::tryToMove(Drawable & head)
 
 void Nibbler::move()
 {
-    Drawable head;
+    Drawable head = snake.back();
 
 	if (!tryToMove(head))
 	{
-	    state = GAMEOVER;
+	    state = MENU;
 	    return;
 	}
 
@@ -183,4 +172,42 @@ void Nibbler::generateFood()
             }
         }
     }
+}
+
+void Nibbler::menu(const EventKeep & ek)
+{
+    if (ek.getLmb())
+    {
+        if (buttons[0].clicked(ek.getMouseY(), ek.getMouseX()))
+        {
+            direction = UP;
+
+            snake.clear();
+            snake.push_front(Drawable((m_height >> 1), (m_width >> 1), SNAKE_HEAD));
+            snake.push_front(Drawable(snake.front().getPosY() + 1,
+                snake.front().getPosX(), SNAKE_BODY));
+            snake.push_front(Drawable(snake.front().getPosY() + 1,
+                snake.front().getPosX(), SNAKE_BODY));
+            
+            generateFood();
+            state = GAME;
+        }
+        if (buttons[1].clicked(ek.getMouseY(), ek.getMouseX()))
+        {
+            exit(0);
+        }
+    }
+
+    //things to draw
+    gameObjects.clear();
+    for (auto it : buttons)
+    {
+        gameObjects.push_back(it);
+    }
+
+}
+
+void Nibbler::gameOver(const EventKeep &)
+{
+
 }

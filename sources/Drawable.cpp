@@ -1,11 +1,16 @@
 #include "Drawable.h"
 
 Drawable::Drawable() {}
-Drawable::Drawable(const int y, const int x,
-	const eTexture texture) : m_posy(y), m_posx(x), m_texture(texture) {}
+Drawable::Drawable(const int y, const int x, const eTexture texture) :
+	m_posy(y), m_posx(x), m_height(32), m_width(32),
+	m_texture(texture), m_name("test") {}
 Drawable::Drawable(const int y, const int x, const eTexture texture,
-	const std::string name) : m_posy(y), m_posx(x), m_texture(texture),
-	m_name(name) {}
+	const std::string name) : m_posy(y), m_posx(x), m_height(32), m_width(32),
+	m_texture(texture), m_name(name) {}
+Drawable::Drawable(const int y, const int x, const int height, const int width,
+	const eTexture txr, const std::string name) :
+	m_posy(y), m_posx(x), m_height(height), m_width(width),
+	m_texture(txr), m_name(name) {}
 Drawable::~Drawable() {}
 
 int Drawable::getPosY() const
@@ -16,6 +21,16 @@ int Drawable::getPosY() const
 int Drawable::getPosX() const
 {
 	return m_posx;
+}
+
+int Drawable::getHeight() const
+{
+	return m_height;
+}
+
+int Drawable::getWidth() const
+{
+	return m_width;
 }
 
 eTexture Drawable::getTexture() const
